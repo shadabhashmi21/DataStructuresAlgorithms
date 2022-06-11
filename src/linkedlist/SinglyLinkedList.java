@@ -2,7 +2,8 @@ package linkedlist;
 
 public class SinglyLinkedList {
     private ListNode head;
-    private static class ListNode{
+
+    private static class ListNode {
         private final int data;
         private ListNode next;
 
@@ -12,13 +13,23 @@ public class SinglyLinkedList {
         }
     }
 
-    public void display(){
+    public void display() {
         ListNode current = head;
-        while (current != null){
+        while (current != null) {
             System.out.print(current.data + "-> ");
             current = current.next;
         }
-        System.out.print("null");
+        System.out.println("null");
+    }
+
+    public void count() {
+        int counter = 0;
+        ListNode current = head;
+        while (current != null) {
+            counter++;
+            current = current.next;
+        }
+        System.out.println("Length of linked list= " + counter);
     }
 
     public static void main(String[] args) {
@@ -34,5 +45,6 @@ public class SinglyLinkedList {
         third.next = fourth;
 
         sll.display();
+        sll.count();
     }
 }
