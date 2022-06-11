@@ -3,7 +3,7 @@ package linkedlist;
 public class SinglyLinkedList {
     private ListNode head;
     private static class ListNode{
-        private int data;
+        private final int data;
         private ListNode next;
 
         public ListNode(int data) {
