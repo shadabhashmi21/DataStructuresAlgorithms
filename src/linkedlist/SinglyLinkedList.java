@@ -73,6 +73,15 @@ public class SinglyLinkedList {
         }
     }
 
+    public void deleteFirst(){
+        if(head == null){
+            return;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -85,13 +94,15 @@ public class SinglyLinkedList {
         second.next = third;
         third.next = fourth;
 
-        /*sll.insertFirst(5);
+        sll.insertFirst(5);
         sll.insertFirst(4);
         sll.insertFirst(3);
         sll.insertLast(41);
         sll.insertLast(42);
-        sll.insertLast(43);*/
+        sll.insertLast(43);
         sll.insertAt(5,8);
+        sll.deleteFirst();
+        sll.deleteFirst();
 
         sll.display();
         sll.count();
