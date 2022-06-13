@@ -95,6 +95,21 @@ public class SinglyLinkedList {
         previous.next = null;
     }
 
+    public void deleteAt(int index){
+        if(index == 1){
+            head = head.next;
+        }else {
+            ListNode previous = head;
+            int count = 1;
+            while (count < index-1){
+                previous = previous.next;
+                count++;
+            }
+            ListNode current = previous.next;
+            previous.next = current.next;
+        }
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -117,6 +132,7 @@ public class SinglyLinkedList {
         sll.deleteFirst();
         sll.deleteFirst();
         sll.deleteLast();
+        sll.deleteAt(2);
 
         sll.display();
         sll.count();
