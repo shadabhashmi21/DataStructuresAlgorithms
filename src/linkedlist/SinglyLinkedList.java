@@ -51,7 +51,7 @@ public class SinglyLinkedList {
             current = current.next;
         }
 
-        newNode.next = current;
+        current.next = newNode;
     }
 
     public void insertAt(int index, int data){
