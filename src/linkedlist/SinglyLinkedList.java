@@ -110,6 +110,20 @@ public class SinglyLinkedList {
         }
     }
 
+    public void searchElement(int data){
+        int index = 1;
+        ListNode current = head;
+        while (current != null){
+            if(current.data == data){
+                System.out.println("Element found at " + index + " index");
+                return;
+            }
+            index++;
+            current = current.next;
+        }
+        System.out.println("Element not found");
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -133,6 +147,7 @@ public class SinglyLinkedList {
         sll.deleteFirst();
         sll.deleteLast();
         sll.deleteAt(2);
+        sll.searchElement(5);
 
         sll.display();
         sll.count();
