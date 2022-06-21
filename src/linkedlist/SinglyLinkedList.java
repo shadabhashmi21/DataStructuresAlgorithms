@@ -141,6 +141,19 @@ public class SinglyLinkedList {
         head = previous;
     }
 
+    public void findMiddleNode(){
+        if (head == null)
+            return;
+
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        System.out.println("Middle node = "+slowPtr.data);
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -171,5 +184,6 @@ public class SinglyLinkedList {
 
         sll.reverse();
         sll.display();
+        sll.findMiddleNode();
     }
 }
