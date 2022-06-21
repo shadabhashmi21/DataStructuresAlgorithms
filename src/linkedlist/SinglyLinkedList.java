@@ -124,6 +124,23 @@ public class SinglyLinkedList {
         System.out.println("Element not found");
     }
 
+    public void reverse(){
+        if(head == null){
+            return;
+        }
+
+        ListNode current = head;
+        ListNode next;
+        ListNode previous = null;
+        while (current != null){
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -151,5 +168,8 @@ public class SinglyLinkedList {
 
         sll.display();
         sll.count();
+
+        sll.reverse();
+        sll.display();
     }
 }
