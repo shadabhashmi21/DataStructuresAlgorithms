@@ -141,7 +141,7 @@ public class SinglyLinkedList {
         head = previous;
     }
 
-    public void findMiddleNode(){
+    public void getMiddleNode(){
         if (head == null)
             return;
 
@@ -184,6 +184,6 @@ public class SinglyLinkedList {
 
         sll.reverse();
         sll.display();
-        sll.findMiddleNode();
+        sll.getMiddleNode();
     }
 }
