@@ -154,6 +154,21 @@ public class SinglyLinkedList {
         System.out.println("Middle node = "+slowPtr.data);
     }
 
+    public void findNthFromLast(int index){
+        ListNode mainPtr = head;
+        ListNode refPtr = head;
+        int count = 0;
+        while (count < index){
+            refPtr = refPtr.next;
+            count++;
+        }
+        while (refPtr != null){
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+        System.out.println(mainPtr.data);
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -185,5 +200,6 @@ public class SinglyLinkedList {
         sll.reverse();
         sll.display();
         sll.getMiddleNode();
+        sll.findNthFromLast(2);
     }
 }
