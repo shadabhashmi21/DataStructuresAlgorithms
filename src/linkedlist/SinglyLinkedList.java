@@ -169,6 +169,17 @@ public class SinglyLinkedList {
         System.out.println(mainPtr.data);
     }
 
+    public void removeDuplicateFromSortedList(){
+        ListNode current = head;
+        while (current != null && current.next != null){
+            if(current.data == current.next.data){
+                current.next = current.next.next;
+            }else {
+                current = current.next;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -193,6 +204,9 @@ public class SinglyLinkedList {
         sll.deleteLast();
         sll.deleteAt(2);
         sll.searchElement(5);
+        sll.insertAt(1,5);
+        sll.insertAt(4,20);
+        sll.removeDuplicateFromSortedList();
 
         sll.display();
         sll.count();
@@ -201,5 +215,6 @@ public class SinglyLinkedList {
         sll.display();
         sll.getMiddleNode();
         sll.findNthFromLast(2);
+
     }
 }
