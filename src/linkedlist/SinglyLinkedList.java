@@ -169,15 +169,41 @@ public class SinglyLinkedList {
         System.out.println(mainPtr.data);
     }
 
-    public void removeDuplicateFromSortedList(){
+    public void removeDuplicateFromSortedLinkedList(){
+        if(head == null){
+            return;
+        }
         ListNode current = head;
-        while (current != null && current.next != null){
+        while (current.next != null){
             if(current.data == current.next.data){
                 current.next = current.next.next;
             }else {
                 current = current.next;
             }
         }
+    }
+
+    public void insertNodeInSortedLinkedList(int data){
+        ListNode newNode = new ListNode(data);
+
+        if(head == null){
+            head = newNode;
+        }
+
+        if(head.data >= newNode.data){
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data < newNode.data){
+            temp = current;
+            current = current.next;
+        }
+        newNode.next = current;
+        temp.next = newNode;
     }
 
     public static void main(String[] args) {
@@ -206,15 +232,16 @@ public class SinglyLinkedList {
         sll.searchElement(5);
         sll.insertAt(1,5);
         sll.insertAt(4,20);
-        sll.removeDuplicateFromSortedList();
+        sll.removeDuplicateFromSortedLinkedList();
+        sll.insertNodeInSortedLinkedList(25);
 
         sll.display();
         sll.count();
 
-        sll.reverse();
+        /*sll.reverse();
         sll.display();
         sll.getMiddleNode();
-        sll.findNthFromLast(2);
+        sll.findNthFromLast(2);*/
 
     }
 }
