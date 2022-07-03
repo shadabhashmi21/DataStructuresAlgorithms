@@ -206,6 +206,24 @@ public class SinglyLinkedList {
         temp.next = newNode;
     }
 
+    public void removeGivenKey(int key){
+        if(head.data == key){
+            head = head.next;
+            return;
+        }
+
+        ListNode current = head;
+        ListNode prev = null;
+        while (current != null && current.data != key){
+            prev = current;
+            current = current.next;
+        }
+        if(current == null){
+            return;
+        }
+        prev.next = current.next;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -234,6 +252,7 @@ public class SinglyLinkedList {
         sll.insertAt(4,20);
         sll.removeDuplicateFromSortedLinkedList();
         sll.insertNodeInSortedLinkedList(25);
+        sll.removeGivenKey(20);
 
         sll.display();
         sll.count();
