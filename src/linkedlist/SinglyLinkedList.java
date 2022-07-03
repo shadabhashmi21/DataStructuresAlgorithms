@@ -207,13 +207,15 @@ public class SinglyLinkedList {
     }
 
     public void removeGivenKey(int key){
-        if(head.data == key){
-            head = head.next;
-            return;
-        }
 
         ListNode current = head;
         ListNode prev = null;
+
+        if(current != null && current.data == key){
+            head = current.next;
+            return;
+        }
+
         while (current != null && current.data != key){
             prev = current;
             current = current.next;
