@@ -236,9 +236,8 @@ public class SinglyLinkedList {
         first.next = second;
         second.next = third;
         third.next = fourth;
-        fourth.next = first;
+        fourth.next = second;
     }
-
     public void containsLoop(){
         ListNode fastPtr = head;
         ListNode slowPtr = head;
@@ -254,9 +253,31 @@ public class SinglyLinkedList {
         System.out.println("Loop not detected");
     }
 
+    public void startOfLoop(){
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+        while (fastPtr != null && fastPtr.next !=  null){
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+            if(fastPtr == slowPtr){
+                getStartingNode(slowPtr);
+                break;
+            }
+        }
+    }
+
+    public void getStartingNode(ListNode node){
+        ListNode temp = head;
+        while (temp != node){
+            temp = temp.next;
+            node = node.next;
+        }
+        System.out.println("Starting node = " + node.data);
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
-        sll.head = new ListNode(10);
+        /*sll.head = new ListNode(10);
         ListNode second = new ListNode(20);
         ListNode third = new ListNode(30);
         ListNode fourth = new ListNode(40);
@@ -285,10 +306,11 @@ public class SinglyLinkedList {
         sll.removeGivenKey(20);
 
         sll.display();
-        sll.count();
+        sll.count();*/
 
-        //sll.createLoopInLinkedList();
+        sll.createLoopInLinkedList();
         sll.containsLoop();
+        sll.startOfLoop();
 
         /*sll.reverse();
         sll.display();
