@@ -260,12 +260,14 @@ public class SinglyLinkedList {
             fastPtr = fastPtr.next.next;
             slowPtr = slowPtr.next;
             if(fastPtr == slowPtr){
-                getStartingNode(slowPtr);
+                //getStartingNode(slowPtr);
+                removeLoop(slowPtr);
                 break;
             }
         }
     }
 
+    //Floyd's Cycle Detection Algorithm
     public void getStartingNode(ListNode node){
         ListNode temp = head;
         while (temp != node){
@@ -273,6 +275,15 @@ public class SinglyLinkedList {
             node = node.next;
         }
         System.out.println("Starting node = " + node.data);
+    }
+
+    public void removeLoop(ListNode node){
+        ListNode temp = head;
+        while (temp != node){
+            temp = temp.next;
+            node = node.next;
+        }
+        node.next = null;
     }
 
     public static void main(String[] args) {
@@ -311,6 +322,7 @@ public class SinglyLinkedList {
         sll.createLoopInLinkedList();
         sll.containsLoop();
         sll.startOfLoop();
+        sll.display();
 
         /*sll.reverse();
         sll.display();
