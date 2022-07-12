@@ -270,7 +270,7 @@ public class SinglyLinkedList {
     //Floyd's Cycle Detection Algorithm
     public void getStartingNode(ListNode node){
         ListNode temp = head;
-        while (temp != node){
+        while (temp.next != node.next){
             temp = temp.next;
             node = node.next;
         }
@@ -284,6 +284,27 @@ public class SinglyLinkedList {
             node = node.next;
         }
         node.next = null;
+    }
+
+    public void mergeTwoSortedList(ListNode l1, ListNode l2){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (l1 != null && l2 != null){
+            if(l1.data <= l2.data){
+                tail.next = l1;
+                l1 = l1.next;
+            }else {
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
+        }
+        if (l1 == null) {
+            tail.next = l2;
+        }else {
+            tail.next = l1;
+        }
+        head = dummy.next;
     }
 
     public static void main(String[] args) {
