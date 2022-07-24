@@ -340,15 +340,31 @@ public class SinglyLinkedList {
         sll.display();
         sll.count();*/
 
-        sll.createLoopInLinkedList();
+        /*sll.createLoopInLinkedList();
         sll.containsLoop();
         sll.startOfLoop();
-        sll.display();
+        sll.display();*/
 
         /*sll.reverse();
         sll.display();
         sll.getMiddleNode();
         sll.findNthFromLast(2);*/
 
+        SinglyLinkedList sll1 = new SinglyLinkedList();
+        sll1.head = new ListNode(1);
+        sll1.insertLast(3);
+        sll1.insertLast(5);
+
+        SinglyLinkedList sll2 = new SinglyLinkedList();
+        sll2.head = new ListNode(2);
+        sll2.insertLast(4);
+        sll2.insertLast(6);
+
+        sll1.display();
+        sll2.display();
+
+        SinglyLinkedList res = new SinglyLinkedList();
+        res.mergeTwoSortedList(sll1.head, sll2.head);
+        res.display();
     }
 }
