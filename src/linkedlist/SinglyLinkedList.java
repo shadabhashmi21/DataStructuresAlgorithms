@@ -155,6 +155,9 @@ public class SinglyLinkedList {
     }
 
     public void findNthFromLast(int index){
+        if(head == null)
+            return;
+
         ListNode mainPtr = head;
         ListNode refPtr = head;
         int count = 0;
@@ -188,6 +191,7 @@ public class SinglyLinkedList {
 
         if(head == null){
             head = newNode;
+            return;
         }
 
         if(head.data >= newNode.data){
@@ -221,6 +225,7 @@ public class SinglyLinkedList {
             current = current.next;
         }
         if(current == null){
+            System.out.println("Element not found");
             return;
         }
         prev.next = current.next;
@@ -270,7 +275,7 @@ public class SinglyLinkedList {
     //Floyd's Cycle Detection Algorithm
     public void getStartingNode(ListNode node){
         ListNode temp = head;
-        while (temp.next != node.next){
+        while (temp != node){
             temp = temp.next;
             node = node.next;
         }
@@ -279,7 +284,7 @@ public class SinglyLinkedList {
 
     public void removeLoop(ListNode node){
         ListNode temp = head;
-        while (temp != node){
+        while (temp.next != node.next){
             temp = temp.next;
             node = node.next;
         }
