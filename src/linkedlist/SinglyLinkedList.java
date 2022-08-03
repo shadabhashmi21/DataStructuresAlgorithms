@@ -68,8 +68,8 @@ public class SinglyLinkedList {
                 counter++;
             }
             ListNode current = previous.next;
-            newNode.next = current;
             previous.next = newNode;
+            newNode.next = current;
         }
     }
 
