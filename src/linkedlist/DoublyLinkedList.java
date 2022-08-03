@@ -7,50 +7,50 @@ public class DoublyLinkedList {
     private ListNode tail;
     private int length;
 
-    private class ListNode{
+    private static class ListNode {
         private final int data;
         private ListNode next;
         private ListNode previous;
 
-        public ListNode(int data){
+        public ListNode(int data) {
             this.data = data;
         }
     }
 
-    public DoublyLinkedList(){
+    public DoublyLinkedList() {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return length == 0;
     }
 
-    public void displayForward(){
+    public void displayForward() {
         ListNode current = head;
-        while (current != null){
+        while (current != null) {
             System.out.print(current.data + " --> ");
             current = current.next;
         }
         System.out.print("null");
     }
 
-    public void displayBackward(){
+    public void displayBackward() {
         ListNode current = tail;
-        while (current != null){
+        while (current != null) {
             System.out.print(current.data + " --> ");
             current = current.previous;
         }
         System.out.print("null");
     }
 
-    public void insertFirst(int data){
+    public void insertFirst(int data) {
         ListNode newNode = new ListNode(data);
 
-        if (isEmpty()){
+        if (isEmpty()) {
             tail = newNode;
-        }else {
+        } else {
             head.previous = newNode;
         }
         newNode.next = head;
@@ -58,12 +58,12 @@ public class DoublyLinkedList {
         length++;
     }
 
-    public void insertLast(int data){
+    public void insertLast(int data) {
         ListNode newNode = new ListNode(data);
 
-        if (isEmpty()){
+        if (isEmpty()) {
             head = newNode;
-        }else {
+        } else {
             tail.next = newNode;
             newNode.previous = tail;
         }
@@ -71,28 +71,28 @@ public class DoublyLinkedList {
         length++;
     }
 
-    public void deleteFirst(){
-        if (isEmpty()){
+    public void deleteFirst() {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
         ListNode temp = head;
-        if(head == tail){
+        if (head == tail) {
             tail = null;
-        }else {
+        } else {
             head.next.previous = null;
         }
         head = head.next;
         temp.next = null;
     }
 
-    public void deleteLast(){
-        if (isEmpty()){
+    public void deleteLast() {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
         ListNode temp = tail;
-        if (head == tail){
+        if (head == tail) {
             head = null;
-        }else {
+        } else {
             tail.previous.next = null;
         }
         tail = tail.previous;
