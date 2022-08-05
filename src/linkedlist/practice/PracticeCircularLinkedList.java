@@ -1,6 +1,5 @@
 package linkedlist.practice;
 
-import linkedlist.CircularLinkedList;
 
 import java.util.NoSuchElementException;
 
@@ -8,7 +7,7 @@ public class PracticeCircularLinkedList {
     private ListNode last;
     private int length;
 
-    private static class ListNode{
+    private static class ListNode {
         private ListNode next;
         private final int data;
 
@@ -17,26 +16,26 @@ public class PracticeCircularLinkedList {
         }
     }
 
-    public PracticeCircularLinkedList(){
+    public PracticeCircularLinkedList() {
         last = null;
         length = 0;
     }
 
-    public int getLength(){
+    public int getLength() {
         return length;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return length == 0;
     }
 
-    public void display(){
-        if (last == null){
+    public void display() {
+        if (last == null) {
             return;
         }
 
         ListNode first = last.next;
-        while (first != last){
+        while (first != last) {
             System.out.print(first.data + " --> ");
             first = first.next;
         }
@@ -44,7 +43,7 @@ public class PracticeCircularLinkedList {
         System.out.println();
     }
 
-    public void createCircularLinkedList(){
+    public void createCircularLinkedList() {
         ListNode first = new ListNode(5);
         ListNode second = new ListNode(10);
         ListNode third = new ListNode(15);
@@ -58,25 +57,25 @@ public class PracticeCircularLinkedList {
         last = fourth;
     }
 
-    public void insertFirst(int data){
+    public void insertFirst(int data) {
         ListNode newNode = new ListNode(data);
 
-        if (last == null){
+        if (last == null) {
             last = newNode;
-        }else {
+        } else {
             newNode.next = last.next;
         }
         last.next = newNode;
         length++;
     }
 
-    public void insertLast(int data){
+    public void insertLast(int data) {
         ListNode newNode = new ListNode(data);
 
-        if (last == null){
+        if (last == null) {
             last = newNode;
             last.next = last;
-        }else {
+        } else {
             newNode.next = last.next;
             last.next = newNode;
             last = newNode;
@@ -84,14 +83,14 @@ public class PracticeCircularLinkedList {
         length++;
     }
 
-    public void deleteFirst(){
-        if (isEmpty()){
+    public void deleteFirst() {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
         ListNode temp = last.next;
-        if (last.next == last){
+        if (last.next == last) {
             last = null;
-        }else {
+        } else {
             last.next = temp.next;
         }
         temp.next = null;
