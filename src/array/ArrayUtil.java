@@ -27,7 +27,7 @@ public class ArrayUtil {
         printArray(resultArray);
     }
 
-    public void reverse(int arr[]){
+    public void reverse(int[] arr){
         int start = 0, end = arr.length -1;
         while (start < end){
             int temp = arr[start];
@@ -40,10 +40,20 @@ public class ArrayUtil {
         printArray(arr);
     }
 
+    public void smallestElement(int[] arr){
+        int min = arr[0];
+        for (int i=0; i<arr.length; i++){
+            if (arr[i] < min)
+                min = arr[i];
+        }
+        System.out.println("Smallest Element = " + min);
+    }
+
     public static void main(String[] args) {
         int[] arr = {2,3,4,5,7,9};
         ArrayUtil arrayUtil = new ArrayUtil();
         arrayUtil.removeEven(arr);
         arrayUtil.reverse(arr);
+        arrayUtil.smallestElement(arr);
     }
 }
