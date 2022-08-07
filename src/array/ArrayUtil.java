@@ -23,7 +23,7 @@ public class ArrayUtil {
                 index++;
             }
         }
-        System.out.println("After after removing even numbers");
+        System.out.println("Array after removing even numbers");
         printArray(resultArray);
     }
 
@@ -62,12 +62,29 @@ public class ArrayUtil {
         System.out.println("Second Largest Element = " + secondMax);
     }
 
+    public void moveZeros(int[] arr){
+        int j=0;
+        for (int i=0; i<arr.length; i++){
+            if (arr[i] != 0 && arr[j] == 0){
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            if (arr[j] != 0){
+                j++;
+            }
+        }
+        System.out.println("Array after moving Zeros to end");
+        printArray(arr);
+    }
+
     public static void main(String[] args) {
-        int[] arr = {2,3,4,5,7,9};
+        int[] arr = {0,2,0,3,4,0,5,7,9,0};
         ArrayUtil arrayUtil = new ArrayUtil();
         arrayUtil.removeEven(arr);
         arrayUtil.reverse(arr);
         arrayUtil.findSmallestElement(arr);
         arrayUtil.findSecondMax(arr);
+        arrayUtil.moveZeros(arr);
     }
 }
