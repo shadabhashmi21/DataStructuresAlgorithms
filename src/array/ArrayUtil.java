@@ -78,6 +78,15 @@ public class ArrayUtil {
         printArray(arr);
     }
 
+    public void findMissingNumber(int[] arr){
+        int n = arr.length + 1;
+        int sum = n * (n+1) /2;
+        for (int i=0; i<arr.length; i++){
+            sum = sum-arr[i];
+        }
+        System.out.println("Missing Number = " + sum);
+    }
+
     public static void main(String[] args) {
         int[] arr = {0,2,0,3,4,0,5,7,9,0};
         ArrayUtil arrayUtil = new ArrayUtil();
@@ -86,5 +95,6 @@ public class ArrayUtil {
         arrayUtil.findSmallestElement(arr);
         arrayUtil.findSecondMax(arr);
         arrayUtil.moveZeros(arr);
+        arrayUtil.findMissingNumber(new int[] {1,2,3,5});
     }
 }
