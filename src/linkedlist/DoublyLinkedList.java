@@ -83,6 +83,7 @@ public class DoublyLinkedList {
         }
         head = head.next;
         temp.next = null;
+        length--;
     }
 
     public void deleteLast() {
@@ -97,6 +98,7 @@ public class DoublyLinkedList {
         }
         tail = tail.previous;
         temp.previous = null;
+        length--;
     }
 
     public static void main(String[] args) {

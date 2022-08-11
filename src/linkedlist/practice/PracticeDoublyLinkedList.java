@@ -6,11 +6,11 @@ public class PracticeDoublyLinkedList {
     private ListNode head;
     private ListNode tail;
     private int length;
-    public static class ListNode{
-        private ListNode next;
-        private ListNode previous;
-        private int data;
 
+    private static class ListNode{
+        private final int data;
+        private ListNode previous;
+        private ListNode next;
         public ListNode(int data){
             this.data = data;
         }
@@ -49,8 +49,8 @@ public class PracticeDoublyLinkedList {
 
         if (isEmpty()){
             tail = newNode;
-        }else {
-            head.previous = newNode;
+        } else {
+          head.previous = newNode;
         }
         newNode.next = head;
         head = newNode;
@@ -62,7 +62,7 @@ public class PracticeDoublyLinkedList {
 
         if (isEmpty()){
             head = newNode;
-        }else {
+        } else {
             tail.next = newNode;
             newNode.previous = tail;
         }
@@ -74,29 +74,29 @@ public class PracticeDoublyLinkedList {
         if (isEmpty()){
             throw new NoSuchElementException();
         }
-
         ListNode temp = head;
-        if (head == tail){
+        if (temp == tail){
             tail = null;
         }else {
             head.next.previous = null;
         }
         head = head.next;
         temp.next = null;
+        length--;
     }
 
     public void deleteLast(){
         if (isEmpty()){
             throw new NoSuchElementException();
         }
-
         ListNode temp = tail;
-        if (head == tail){
+        if (temp == head){
             head = null;
         }else {
-            tail.previous.next = null;
+            temp.previous.next = null;
         }
         tail = tail.previous;
         temp.previous = null;
+        length--;
     }
 }
