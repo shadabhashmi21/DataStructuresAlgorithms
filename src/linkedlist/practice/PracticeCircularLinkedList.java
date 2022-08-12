@@ -1,6 +1,5 @@
 package linkedlist.practice;
 
-
 import java.util.NoSuchElementException;
 
 public class PracticeCircularLinkedList {
@@ -8,8 +7,8 @@ public class PracticeCircularLinkedList {
     private int length;
 
     private static class ListNode {
-        private ListNode next;
         private final int data;
+        private ListNode next;
 
         private ListNode(int data) {
             this.data = data;
@@ -36,18 +35,17 @@ public class PracticeCircularLinkedList {
 
         ListNode first = last.next;
         while (first != last) {
-            System.out.print(first.data + " --> ");
+            System.out.println(first.data + " --> ");
             first = first.next;
         }
-        System.out.print(first.data);
-        System.out.println();
+        System.out.println(first.data);
     }
 
     public void createCircularLinkedList() {
-        ListNode first = new ListNode(5);
-        ListNode second = new ListNode(10);
-        ListNode third = new ListNode(15);
-        ListNode fourth = new ListNode(20);
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
 
         first.next = second;
         second.next = third;
