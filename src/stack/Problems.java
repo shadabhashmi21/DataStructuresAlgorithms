@@ -39,8 +39,33 @@ public class Problems {
         System.out.println("Next Greater Element = " + Arrays.toString(result));
     }
 
+    public static void isValidParenthesis(String s){
+        Stack<Character> stack = new Stack<>();
+
+        for (char c: s.toCharArray()){
+            if (c == '(' || c == '{' || c == '['){
+                stack.push(c);
+            }else {
+                if (stack.isEmpty()){
+                    System.out.println("Invalid Parenthesis");
+                    return;
+                }else {
+                    char top = stack.peek();
+                    if (c == ')' && top == '(' || c == '}' && top == '{' || c == ']' && top == '['){
+                        stack.pop();
+                    }else {
+                        System.out.println("Invalid Parenthesis");
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println(stack.isEmpty() ? "Valid Parenthesis" : "Invalid Parenthesis");
+    }
+
     public static void main(String[] args) {
         reverseString("Mango");
         nextGreaterElement(new int[]{4,7,3,4,8,1});
+        isValidParenthesis("{()}");
     }
 }
