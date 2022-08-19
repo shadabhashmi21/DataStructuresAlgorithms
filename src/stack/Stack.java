@@ -1,13 +1,12 @@
 package stack;
 
 import java.util.EmptyStackException;
-import java.util.NoSuchElementException;
 
 public class Stack {
     private ListNode top;
     private int length;
 
-    private static class ListNode{
+    private static class ListNode {
         private final int data;
         private ListNode next;
 
@@ -17,42 +16,42 @@ public class Stack {
         }
     }
 
-    public Stack(){
+    public Stack() {
         top = null;
         length = 0;
     }
 
-    public int getLength(){
+    public int getLength() {
         return length;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return length == 0;
     }
 
-    public void push(int data){
+    public void push(int data) {
         ListNode temp = new ListNode(data);
         temp.next = top;
         top = temp;
         length++;
     }
 
-    public void pop(){
-        if (isEmpty()){
+    public int pop() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
 
         int result = top.data;
         top = top.next;
         length--;
-        System.out.println("Popped Element = " + result);
+        return result;
     }
 
-    public void peek(){
-        if (isEmpty()){
+    public int peek() {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
-        System.out.println("Peek Element = " + top.data);
+        return top.data;
     }
 
     public static void main(String[] args) {
@@ -62,9 +61,9 @@ public class Stack {
         stack.push(15);
         stack.push(20);
 
-        stack.peek();
+        System.out.println(stack.peek());
         stack.pop();
         stack.pop();
-        stack.pop();
+        System.out.println(stack.pop());
     }
 }
