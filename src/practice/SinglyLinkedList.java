@@ -1,14 +1,13 @@
-package linkedlist.practice;
+package practice;
 
-import linkedlist.SinglyLinkedList;
-
-public class PracticeSinglyLinkedList {
+public class SinglyLinkedList {
     private ListNode head;
-    public static class ListNode{
+
+    private static class ListNode{
         private final int data;
         private ListNode next;
 
-        public ListNode(int data){
+        private ListNode(int data) {
             this.data = data;
             next = null;
         }
@@ -30,37 +29,39 @@ public class PracticeSinglyLinkedList {
             counter++;
             current = current.next;
         }
-        System.out.println("Length of linked list = "+counter);
+        System.out.println("Length= " + counter);
     }
 
     public void insertFirst(int data){
-        ListNode newNode = new ListNode(data);
-        newNode.next = head;
-        head = newNode;
+        ListNode temp = new ListNode(data);
+        temp.next = head;
+        head = temp;
     }
 
     public void insertLast(int data){
-        ListNode newNode = new ListNode(data);
+        ListNode temp = new ListNode(data);
 
         if (head == null){
-            head = newNode;
+            head = temp;
             return;
         }
 
         ListNode current = head;
-        while (current.next != null)
+        while (current.next != null){
             current = current.next;
-        current.next = newNode;
+        }
+        current.next = temp;
     }
 
-    public void insertAt(int index, int data){
-        ListNode newNode = new ListNode(data);
+    public void insertAt(int data, int index){
+        ListNode temp = new ListNode(data);
 
         if (index == 1){
-            newNode.next = head;
-            head = newNode;
+            temp.next = head;
+            head = temp;
             return;
         }
+
         int counter = 1;
         ListNode previous = head;
         while (counter < index-1){
@@ -68,13 +69,14 @@ public class PracticeSinglyLinkedList {
             counter++;
         }
         ListNode current = previous.next;
-        previous.next = newNode;
-        newNode.next = current;
+        previous.next = temp;
+        temp.next = current;
     }
 
     public void deleteFirst(){
-        if (head == null)
+        if (head == null){
             return;
+        }
 
         ListNode temp = head;
         head = head.next;
@@ -82,8 +84,9 @@ public class PracticeSinglyLinkedList {
     }
 
     public void deleteLast(){
-        if (head == null || head.next == null)
+        if (head == null || head.next == null){
             return;
+        }
 
         ListNode previous = null, current = head;
         while (current.next != null){
@@ -100,7 +103,7 @@ public class PracticeSinglyLinkedList {
         }
 
         ListNode previous = head;
-        int counter = 1;
+        int counter = 0;
         while (counter < index-1){
             previous = previous.next;
             counter++;
@@ -124,8 +127,9 @@ public class PracticeSinglyLinkedList {
     }
 
     public void reverse(){
-        if (head == null)
+        if (head == null){
             return;
+        }
 
         ListNode current = head, previous = null, next;
         while (current != null){
@@ -150,8 +154,9 @@ public class PracticeSinglyLinkedList {
     }
 
     public void findNthFromLast(int index){
-        if (head == null)
+        if (head == null){
             return;
+        }
 
         ListNode refPtr = head, mainPtr = head;
         int counter = 0;
@@ -159,9 +164,10 @@ public class PracticeSinglyLinkedList {
             refPtr = refPtr.next;
             counter++;
         }
+
         while (refPtr != null){
-            refPtr = refPtr.next;
             mainPtr = mainPtr.next;
+            refPtr = refPtr.next;
         }
         System.out.println(mainPtr.data);
     }
@@ -214,6 +220,7 @@ public class PracticeSinglyLinkedList {
             previous = current;
             current = current.next;
         }
+
         if (current == null){
             System.out.println("Element not found");
             return;
@@ -222,20 +229,20 @@ public class PracticeSinglyLinkedList {
     }
 
     public void createLoopInLinkedList(){
-        ListNode first = new ListNode(1);
-        ListNode second = new ListNode(2);
-        ListNode third = new ListNode(3);
-        ListNode fourth = new ListNode(4);
+        ListNode first = new ListNode(10);
+        ListNode second = new ListNode(15);
+        ListNode third = new ListNode(20);
+        ListNode fourth = new ListNode(25);
 
         head = first;
         first.next = second;
         second.next = third;
         third.next = fourth;
-        fourth.next = second;
+        fourth.next = first;
     }
 
     public void containsLoop(){
-        ListNode fastPtr = head, slowPtr = head;
+        ListNode slowPtr = head, fastPtr = head;
         while (fastPtr != null && fastPtr.next != null){
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
@@ -248,12 +255,11 @@ public class PracticeSinglyLinkedList {
     }
 
     public void startOfLoop(){
-        ListNode fastPtr = head;
-        ListNode slowPtr = head;
-        while (fastPtr != null && fastPtr.next !=  null){
-            fastPtr = fastPtr.next.next;
+        ListNode fastPtr = head, slowPtr = head;
+        while (fastPtr != null && fastPtr.next != null){
             slowPtr = slowPtr.next;
-            if(fastPtr == slowPtr){
+            fastPtr = fastPtr.next.next;
+            if (slowPtr == fastPtr){
                 //getStartingNode(slowPtr);
                 removeLoop(slowPtr);
                 break;
@@ -272,7 +278,7 @@ public class PracticeSinglyLinkedList {
 
     public void removeLoop(ListNode node){
         ListNode temp = head;
-        while (temp.next != node.next) {
+        while (temp.next != node.next){
             temp = temp.next;
             node = node.next;
         }
