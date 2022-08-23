@@ -60,18 +60,17 @@ public class ArrayUtil {
     }
 
     public void moveZeros(int[] arr){
-        int j=0;
+        int j = 0;
         for (int i: arr){
             if (arr[i] != 0 && arr[j] == 0){
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
-            if (arr[j] != 0){
+            if (arr[j] != 0)
                 j++;
-            }
-            printArray(arr);
         }
+        printArray(arr);
     }
 
     public void findMissingNumber(int[] arr){
