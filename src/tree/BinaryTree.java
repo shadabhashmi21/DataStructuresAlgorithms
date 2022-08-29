@@ -25,4 +25,20 @@ public class BinaryTree {
         second.left = fourth;
         second.right = fifth;
     }
+
+    public void preOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        System.out.print(root.data + " ");
+        preOrderRecursive(root.left);
+        preOrderRecursive(root.right);
+    }
+
+    public static void main(String[] args) {
+        BinaryTree bt = new BinaryTree();
+        bt.createBinaryTree();
+        bt.preOrderRecursive(bt.root);
+    }
 }
