@@ -57,10 +57,21 @@ public class BinaryTree {
         }
     }
 
+    public void inOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        inOrderRecursive(root.left);
+        System.out.print(root.data + " ");
+        inOrderRecursive(root.right);
+    }
+
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         bt.createBinaryTree();
         //bt.preOrderRecursive(bt.root);
-        bt.preOrderIterative(bt.root);
+        //bt.preOrderIterative(bt.root);
+        bt.inOrderRecursive(bt.root);
     }
 }
