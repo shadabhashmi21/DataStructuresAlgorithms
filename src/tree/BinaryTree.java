@@ -67,11 +67,31 @@ public class BinaryTree {
         inOrderRecursive(root.right);
     }
 
+    public void inOrderIterative(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
+        while (!stack.isEmpty() || temp != null){
+            if (temp != null){
+                stack.push(temp);
+                temp = temp.left;
+            }else {
+                temp = stack.pop();
+                System.out.print(temp.data + " ");
+                temp = temp.right;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         bt.createBinaryTree();
         //bt.preOrderRecursive(bt.root);
         //bt.preOrderIterative(bt.root);
         bt.inOrderRecursive(bt.root);
+        bt.inOrderIterative(bt.root);
     }
 }
