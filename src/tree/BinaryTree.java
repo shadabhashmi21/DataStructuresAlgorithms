@@ -86,12 +86,23 @@ public class BinaryTree {
         }
     }
 
+    public void postOrderRecursive(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        postOrderRecursive(root.left);
+        postOrderRecursive(root.right);
+        System.out.print(root.data + " ");
+    }
+
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         bt.createBinaryTree();
         //bt.preOrderRecursive(bt.root);
         //bt.preOrderIterative(bt.root);
-        bt.inOrderRecursive(bt.root);
-        bt.inOrderIterative(bt.root);
+        //bt.inOrderRecursive(bt.root);
+        //bt.inOrderIterative(bt.root);
+        bt.postOrderRecursive(bt.root);
     }
 }
