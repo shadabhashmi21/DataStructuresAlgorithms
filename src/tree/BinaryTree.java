@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.Stack;
+
 public class BinaryTree {
     private TreeNode root;
     private class TreeNode{
@@ -36,9 +38,29 @@ public class BinaryTree {
         preOrderRecursive(root.right);
     }
 
+    public void preOrderIterative(TreeNode root){
+        if (root == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode temp = stack.pop();
+            System.out.print(temp.data + " ");
+            if (temp.right != null){
+                stack.push(temp.right);
+            }
+            if(temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         bt.createBinaryTree();
-        bt.preOrderRecursive(bt.root);
+        //bt.preOrderRecursive(bt.root);
+        bt.preOrderIterative(bt.root);
     }
 }
