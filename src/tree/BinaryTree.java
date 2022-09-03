@@ -4,9 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/*
+* A Binary Tree contains only 0,1 or 2 number of child sub nodes
+*/
+
+
 public class BinaryTree {
     private TreeNode root;
-    private class TreeNode{
+    private static class TreeNode{
         private TreeNode left;
         private TreeNode right;
         private final int data;
