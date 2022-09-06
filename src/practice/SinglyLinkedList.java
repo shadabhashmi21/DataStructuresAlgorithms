@@ -176,5 +176,125 @@ public class SinglyLinkedList {
         }
     }
 
+    public void insertNodeInSortedLinkedList(int data){
+        ListNode newNode = new ListNode(data);
 
+        if (head == null){
+            head = newNode;
+            return;
+        }
+
+        if (head.data >= newNode.data){
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        ListNode current = head, temp = null;
+        while (current.data <= newNode.data){
+            temp = current;
+            current = current.next;
+        }
+        temp.next = newNode;
+        newNode.next = current;
+    }
+
+    public void removeGivenKey(int key){
+        ListNode current = head, prev = null;
+
+        if (current != null && current.data == key){
+            head = current.next;
+            return;
+        }
+
+        while (current != null && current.data != key) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            System.out.println("Element not found");
+            return;
+        }
+        prev.next = current.next;
+    }
+
+    public void createLoopInLinkedList(){
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = second;
+    }
+
+    public void containsLoop(){
+        ListNode fastPtr = head, slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (slowPtr == fastPtr) {
+                System.out.println("Loop Detected");
+                return;
+            }
+            System.out.println("Loop not detected");
+        }
+    }
+
+    public void startOfLoop(){
+        ListNode fastPtr = head, slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (slowPtr == fastPtr) {
+
+                return;
+            }
+        }
+    }
+
+    public void getStartingNode(ListNode node){
+        ListNode temp = head;
+        while (temp != node){
+            temp = temp.next;
+            node = node.next;
+        }
+        System.out.println("Starting node = " + node.data);
+    }
+
+    public void removeLoop(ListNode node){
+        ListNode temp = head;
+        while (temp.next != node.next){
+            temp = temp.next;
+            node = node.next;
+        }
+        node.next = null;
+    }
+
+    public void mergeTwoSortedList(ListNode l1, ListNode l2){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (l1 != null && l2 != null){
+            if (l1.data <= l2.data){
+                tail.next = l1;
+                l1 = l1.next;
+            }else {
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
+            if (l1 == null)
+                tail.next = l2;
+            else
+                tail.next = l1;
+
+            head = dummy.next;
+        }
+    }
 }
