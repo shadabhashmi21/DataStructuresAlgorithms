@@ -6,16 +6,16 @@ public class CircularLinkedList {
     private ListNode last;
     private int length;
 
-    private static class ListNode{
+    private static class ListNode {
         private final int data;
         private ListNode next;
 
-        private ListNode(int data) {
+        public ListNode(int data) {
             this.data = data;
         }
     }
 
-    public CircularLinkedList(){
+    public CircularLinkedList() {
         last = null;
         length = 0;
     }
@@ -24,19 +24,21 @@ public class CircularLinkedList {
         return length;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return length == 0;
     }
 
-    public void display(){
-        if (last == null){
+    public void display() {
+        if (last == null) {
             return;
         }
 
         ListNode first = last.next;
-        while (first != last){
-            System.out.println(first);
+        while (first != last) {
+            System.out.print(first.data + " ");
+            first = first.next;
         }
+        System.out.print(first.data);
     }
 
     public void createCircularLinkedList() {
@@ -56,7 +58,7 @@ public class CircularLinkedList {
     public void insertFirst(int data){
         ListNode newNode = new ListNode(data);
 
-        if (last == null){
+        if (last == null) {
             last = newNode;
         }else {
             newNode.next = last.next;
@@ -68,9 +70,9 @@ public class CircularLinkedList {
     public void insertLast(int data){
         ListNode newNode = new ListNode(data);
 
-        if (last == null){
+        if (last == null) {
             last = newNode;
-            last.next = newNode;
+            last.next = last;
         }else {
             newNode.next = last.next;
             last.next = newNode;
@@ -80,15 +82,15 @@ public class CircularLinkedList {
     }
 
     public void deleteFirst(){
-        if (isEmpty()){
+        if (isEmpty())
             throw new NoSuchElementException();
-        }
+
         ListNode temp = last.next;
-        if (last.next == last){
+        if (last.next == last)
             last = null;
-        }else {
+        else
             last.next = temp.next;
-        }
+
         temp.next = null;
         length--;
     }
