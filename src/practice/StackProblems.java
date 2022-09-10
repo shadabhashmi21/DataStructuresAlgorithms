@@ -8,7 +8,9 @@ public class StackProblems {
         Stack<Character> stack = new Stack<>();
         char[] ch = str.toCharArray();
 
-        for (char c : ch) stack.push(c);
+        for(char c : ch){
+            stack.push(c);
+        }
 
         for (int i = 0; i < str.length(); i++){
             ch[i] = stack.pop();
@@ -18,34 +20,32 @@ public class StackProblems {
     }
 
     public static void nextGreaterElement(int[] arr){
-        int[] res = new int[arr.length];
+        int[] result = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
 
-        for (int i=arr.length-1; i>=0; i--){
-            if (!stack.isEmpty()){
+        for(int i = arr.length - 1; i >= 0; i--) {
+            if(!stack.isEmpty()){
                 while (!stack.isEmpty() && stack.peek() <= arr[i])
                     stack.pop();
             }
+            if(stack.isEmpty())
+                result[i] = -1;
+            else
+                result[i] = stack.peek();
 
-            if(stack.isEmpty()){
-                res[i] = -1;
-            }else {
-                res[i] = stack.peek();
-            }
             stack.push(arr[i]);
         }
-
-        System.out.println(Arrays.toString(res));
+        System.out.println(Arrays.toString(result));
     }
 
-    public static void  isValidParenthesis(String s){
+    public static void isValidParenthesis(String str) {
         Stack<Character> stack = new Stack<>();
 
-        for (char c: s.toCharArray()){
-            if (c == '(' || c == '{' || c == '['){
+        for(char c : str.toCharArray()) {
+            if(c == '(' || c == '{' || c == '[')
                 stack.push(c);
-            }else {
-                if (stack.isEmpty()){
+            else {
+                if(stack.isEmpty()){
                     System.out.println("Invalid Parenthesis");
                     return;
                 }else {
