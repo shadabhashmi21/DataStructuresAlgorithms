@@ -1,17 +1,18 @@
 package practice;
 
+import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
 public class Stack {
     private ListNode top;
     private int length;
+
     private static class ListNode{
         private final int data;
         private ListNode next;
 
         private ListNode(int data) {
             this.data = data;
-            this.next = null;
         }
     }
 
@@ -20,7 +21,7 @@ public class Stack {
         length = 0;
     }
 
-    public int getLength() {
+    public int getLength(){
         return length;
     }
 
@@ -29,16 +30,16 @@ public class Stack {
     }
 
     public void push(int data){
-        ListNode temp = new ListNode(data);
-        temp.next = top;
-        top = temp;
+        ListNode newNode = new ListNode(data);
+
+        newNode.next = top;
+        top = newNode;
         length++;
     }
 
     public int pop(){
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
+        if (isEmpty())
+            throw new EmptyStackException();
 
         int result = top.data;
         top = top.next;
@@ -47,9 +48,9 @@ public class Stack {
     }
 
     public int peek(){
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
+        if (isEmpty())
+            throw new EmptyStackException();
+
         return top.data;
     }
 }
