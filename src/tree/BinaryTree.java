@@ -8,7 +8,10 @@ import java.util.Stack;
 * A Binary Tree contains only 0,1 or 2 number of child sub nodes
 */
 
-
+/*PREORDER ->   RootNode --> Entire Left SubTree --> Entire Right SubTree
+* INORDER ->   Entire Left SubTree --> RootNode --> Entire Right SubTree
+* POSTORDER ->   Entire Left SubTree --> Entire Right SubTree --> RootNode
+* LevelORDER ->  Each node is visited level by level, for e.g. first all the nodes at level 0 are traversed after that those on level 1 and so on*/
 public class BinaryTree {
     private TreeNode root;
     private static class TreeNode{
