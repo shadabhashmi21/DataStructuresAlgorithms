@@ -2,6 +2,8 @@ package queue;
 
 import java.util.NoSuchElementException;
 
+/*Note -> Insertion is done at rear and deletion is done at front*/
+
 public class Queue {
     private ListNode front;
     private ListNode rear;
