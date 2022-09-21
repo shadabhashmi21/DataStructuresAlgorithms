@@ -48,6 +48,35 @@ public class MaximumPriorityQueue {
         System.out.println();
     }
 
+    public void sink(int k){
+        while (2*k <= n){
+            int j = 2*k;
+            if (j<n && heap[j] < heap[j+1])
+                j++;
+            if (heap[k] >= heap[j])
+                break;
+            swap(k, j);
+            k = j;
+        }
+    }
+
+    public int deleteMax(){
+        int max = heap[1];
+        swap(1,n);
+        n--;
+        sink(1);
+        heap[n+1] = null;
+        if(n > 0 && (n == (heap.length - 1) / 4))
+            resize(heap.length/2);
+        return max;
+    }
+
+    public void swap(int a, int b){
+        int temp = heap[a];
+        heap[a] = heap[b];
+        heap[b] = temp;
+    }
+
     public static void main(String[] args) {
         MaximumPriorityQueue mpq = new MaximumPriorityQueue(3);
         mpq.insert(2);
@@ -56,6 +85,7 @@ public class MaximumPriorityQueue {
         mpq.insert(5);
         mpq.insert(1);
         mpq.printMaxHeap();
-        System.out.println(mpq.getSize());
+        mpq.deleteMax();
+        mpq.printMaxHeap();
     }
 }
