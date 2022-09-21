@@ -7,15 +7,16 @@ public class SinglyLinkedList {
         private final int data;
         private ListNode next;
 
-        public ListNode(int data) {
+        private ListNode(int data) {
             this.data = data;
+            this.next = null;
         }
     }
 
     public void display(){
         ListNode current = head;
         while(current != null){
-            System.out.print(current.data + " ");
+            System.out.print(current.data + "-> ");
             current = current.next;
         }
         System.out.println("null");
@@ -24,11 +25,11 @@ public class SinglyLinkedList {
     public void count(){
         int counter = 0;
         ListNode current = head;
-        while (current != null) {
+        while(current != null){
             counter++;
             current = current.next;
         }
-        System.out.println("count " + counter);
+        System.out.println(counter);
     }
 
     public void insertFirst(int data){
@@ -40,34 +41,36 @@ public class SinglyLinkedList {
     public void insertLast(int data){
         ListNode newNode = new ListNode(data);
 
-        if (head == null){
+        if (head == null) {
             head = newNode;
             return;
         }
 
         ListNode current = head;
-        while (current.next != null) {
+        while(current.next != null){
             current = current.next;
         }
+
         current.next = newNode;
     }
 
-    public void insertAt(int index, int data){
+    public void insertAt(int data, int index){
         ListNode newNode = new ListNode(data);
 
-        if (index == 1){
+        if (index == 1) {
             newNode.next = head;
             head = newNode;
             return;
         }
 
-        int counter = 1;
         ListNode previous = head;
-        while (counter < index-1){
+        int counter = 1;
+        while (counter < index-1) {
             previous = previous.next;
             counter++;
         }
         ListNode current = previous.next;
+
         previous.next = newNode;
         newNode.next = current;
     }
@@ -76,7 +79,7 @@ public class SinglyLinkedList {
         if (head == null) return;
 
         ListNode temp = head;
-        head = temp.next;
+        head = head.next;
         temp.next = null;
     }
 
@@ -88,33 +91,32 @@ public class SinglyLinkedList {
             previous = current;
             current = current.next;
         }
+
         previous.next = null;
     }
 
-    public void deleteAt(int index, int data){
-        ListNode newNode = new ListNode(data);
-
-        if(index ==1){
+    public void deleteAt(int index){
+        if(index == 1){
             head = head.next;
             return;
         }
 
-        ListNode previous = head;
         int counter = 1;
-        while (counter < index){
-            counter++;
+        ListNode previous = head;
+        while (counter < index-1){
             previous = previous.next;
+            counter++;
         }
         ListNode current = previous.next;
         previous.next = current.next;
     }
 
-    public void searchElement(int data){
-        ListNode current = head;
+    public void search(int data){
         int index = 1;
+        ListNode current = head;
         while (current != null){
             if (current.data == data){
-                System.out.println("Element found " + data + " at " + index);
+                System.out.println("Element found" + data + "at" + index);
                 return;
             }
             index++;
@@ -123,7 +125,7 @@ public class SinglyLinkedList {
         System.out.println("Element not found");
     }
 
-    public void reverse(){
+    public void reverse() {
         if (head == null) return;
 
         ListNode current = head, previous = null, next;
@@ -144,23 +146,23 @@ public class SinglyLinkedList {
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
         }
-        System.out.println("Middle node = " + slowPtr);
+        System.out.println("Middle node = " + slowPtr.data);
     }
 
     public void findNthFromLast(int index){
         if (head == null) return;
 
-        ListNode mainPtr = head, refPtr = head;
-        int counter = 0;
-        while (counter < index){
+        ListNode refPtr = head, mainPtr = head;
+        int count = 0;
+        while (count < index){
             refPtr = refPtr.next;
-            counter++;
-        }
-        while (refPtr != null){
-            refPtr = refPtr.next;
-            mainPtr = mainPtr.next;
+            count++;
         }
 
+        while (refPtr != null){
+            mainPtr = mainPtr.next;
+            refPtr = refPtr.next;
+        }
         System.out.println(mainPtr.data);
     }
 
@@ -168,9 +170,9 @@ public class SinglyLinkedList {
         if (head == null) return;
 
         ListNode current = head;
-        while (current != null){
+        while (current.next != null){
             if (current.data == current.next.data)
-                current = current.next.next;
+                current.next = current.next.next;
             else
                 current = current.next;
         }
@@ -189,33 +191,35 @@ public class SinglyLinkedList {
             head = newNode;
             return;
         }
-
+        
         ListNode current = head, temp = null;
-        while (current.data <= newNode.data){
+        while (current != null && current.data < newNode.data){
             temp = current;
             current = current.next;
         }
-        temp.next = newNode;
+        
         newNode.next = current;
+        temp.next = newNode;
     }
-
+    
     public void removeGivenKey(int key){
         ListNode current = head, prev = null;
-
+        
         if (current != null && current.data == key){
-            head = current.next;
+            head = head.next;
             return;
         }
-
-        while (current != null && current.data != key) {
+        
+        while (current != null && current.data != key){
             prev = current;
             current = current.next;
         }
-
-        if (current == null) {
+        
+        if (current == null){
             System.out.println("Element not found");
             return;
         }
+        
         prev.next = current.next;
     }
 
@@ -235,26 +239,26 @@ public class SinglyLinkedList {
     public void containsLoop(){
         ListNode fastPtr = head, slowPtr = head;
 
-        while (fastPtr != null && fastPtr.next != null) {
+        while(fastPtr != null && fastPtr.next != null){
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
-            if (slowPtr == fastPtr) {
-                System.out.println("Loop Detected");
+            if (slowPtr == fastPtr){
+                System.out.println("Loop detected");
                 return;
             }
-            System.out.println("Loop not detected");
         }
+        System.out.println("Loop not detected");
     }
 
     public void startOfLoop(){
         ListNode fastPtr = head, slowPtr = head;
 
-        while (fastPtr != null && fastPtr.next != null) {
+        while(fastPtr != null && fastPtr.next != null){
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
-            if (slowPtr == fastPtr) {
-
-                return;
+            if (slowPtr == fastPtr){
+                getStartingNode(slowPtr);
+                break;
             }
         }
     }
@@ -265,7 +269,7 @@ public class SinglyLinkedList {
             temp = temp.next;
             node = node.next;
         }
-        System.out.println("Starting node = " + node.data);
+        System.out.println(node.data);
     }
 
     public void removeLoop(ListNode node){
@@ -284,17 +288,18 @@ public class SinglyLinkedList {
             if (l1.data <= l2.data){
                 tail.next = l1;
                 l1 = l1.next;
-            }else {
+            }else{
                 tail.next = l2;
                 l2 = l2.next;
             }
             tail = tail.next;
-            if (l1 == null)
-                tail.next = l2;
-            else
-                tail.next = l1;
-
-            head = dummy.next;
         }
+
+        if (l1 == null)
+            tail.next = l2;
+        else
+            tail.next = l1;
+
+        head = dummy.next;
     }
 }
