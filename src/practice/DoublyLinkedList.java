@@ -9,14 +9,13 @@ public class DoublyLinkedList {
 
     private static class ListNode{
         private final int data;
-        private ListNode next;
         private ListNode previous;
+        private ListNode next;
 
-        public ListNode(int data){
+        private ListNode(int data) {
             this.data = data;
         }
     }
-
     public DoublyLinkedList(){
         head = null;
         tail = null;
@@ -42,7 +41,7 @@ public class DoublyLinkedList {
             System.out.print(current.data + " ");
             current = current.previous;
         }
-        System.out.println("null");
+        System.out.print("null");
     }
 
     public void insertFirst(int data){
@@ -63,7 +62,7 @@ public class DoublyLinkedList {
 
         if (isEmpty())
             head = newNode;
-        else{
+        else {
             tail.next = newNode;
             newNode.previous = tail;
         }
@@ -72,9 +71,9 @@ public class DoublyLinkedList {
     }
 
     public void deleteFirst(){
-        if (isEmpty()){
+        if (isEmpty())
             throw new NoSuchElementException();
-        }
+
         ListNode temp = head;
         if (head == tail)
             tail = null;
@@ -87,9 +86,8 @@ public class DoublyLinkedList {
     }
 
     public void deleteLast(){
-        if (isEmpty()){
+        if (isEmpty())
             throw new NoSuchElementException();
-        }
 
         ListNode temp = tail;
         if (head == tail)
@@ -98,7 +96,7 @@ public class DoublyLinkedList {
             tail.previous.next = null;
 
         tail = tail.previous;
-        temp.next = null;
+        temp.previous = null;
         length--;
     }
 }
