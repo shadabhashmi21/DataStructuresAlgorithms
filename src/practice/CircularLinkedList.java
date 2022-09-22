@@ -6,33 +6,31 @@ public class CircularLinkedList {
     private ListNode last;
     private int length;
 
-    private static class ListNode {
+    private static class ListNode{
         private final int data;
         private ListNode next;
 
-        public ListNode(int data) {
+        private ListNode(int data) {
             this.data = data;
         }
     }
-
-    public CircularLinkedList() {
+    
+    public CircularLinkedList(){
         last = null;
         length = 0;
     }
-
-    public int getLength() {
-        return length;
-    }
-
+    
     public boolean isEmpty() {
         return length == 0;
     }
-
-    public void display() {
-        if (last == null) {
-            return;
-        }
-
+    
+    public int getLength() {
+        return length;
+    }
+    
+    public void display(){
+        if (isEmpty()) return;
+        
         ListNode first = last.next;
         while (first != last) {
             System.out.print(first.data + " ");
@@ -41,7 +39,7 @@ public class CircularLinkedList {
         System.out.print(first.data);
     }
 
-    public void createCircularLinkedList() {
+    public void createCircularLinkedList(){
         ListNode first = new ListNode(1);
         ListNode second = new ListNode(2);
         ListNode third = new ListNode(3);
@@ -58,11 +56,11 @@ public class CircularLinkedList {
     public void insertFirst(int data){
         ListNode newNode = new ListNode(data);
 
-        if (last == null) {
+        if (isEmpty())
             last = newNode;
-        }else {
+        else
             newNode.next = last.next;
-        }
+
         last.next = newNode;
         length++;
     }
@@ -70,7 +68,7 @@ public class CircularLinkedList {
     public void insertLast(int data){
         ListNode newNode = new ListNode(data);
 
-        if (last == null) {
+        if (isEmpty()){
             last = newNode;
             last.next = last;
         }else {
