@@ -1,7 +1,6 @@
 package practice;
 
 import java.util.EmptyStackException;
-import java.util.NoSuchElementException;
 
 public class Stack {
     private ListNode top;
@@ -30,10 +29,9 @@ public class Stack {
     }
 
     public void push(int data){
-        ListNode newNode = new ListNode(data);
-
-        newNode.next = top;
-        top = newNode;
+        ListNode temp = new ListNode(data);
+        temp.next = top;
+        top = temp;
         length++;
     }
 
