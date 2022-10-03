@@ -5,17 +5,7 @@ import java.util.NoSuchElementException;
 public class Queue {
     private ListNode front;
     private ListNode rear;
-    public int length;
-
-    private static class ListNode{
-        private final int data;
-        private ListNode next;
-
-        public ListNode(int data) {
-            this.data = data;
-            next = null;
-        }
-    }
+    private int length;
 
     public Queue(){
         front = null;
@@ -23,38 +13,48 @@ public class Queue {
         length = 0;
     }
 
-    public int getLength(){
+    private static class ListNode{
+        private final int data;
+        private ListNode next;
+
+        private ListNode(int data) {
+            this.data = data;
+        }
+    }
+
+    public int getLength() {
         return length;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return length == 0;
     }
 
     public void print(){
-        if(isEmpty()) return;
+        if (isEmpty())
+            return;
 
         ListNode current = front;
-        while(current != null) {
+        while (current != null){
             System.out.print(current.data + " ");
             current = current.next;
         }
         System.out.print("null");
     }
 
-    public void enqueue(int data) {
-        ListNode temp = new ListNode(data);
-        if(isEmpty())
-            front = temp;
+    public void enqueue(int data){
+        ListNode newNode = new ListNode(data);
+        if (isEmpty())
+            front = newNode;
         else
-            rear.next = temp;
+            rear.next = newNode;
 
-        rear = temp;
+        rear = newNode;
         length++;
     }
 
-    public int dequeue() {
-        if(isEmpty())
+    public int dequeue(){
+        if (isEmpty())
             throw new NoSuchElementException();
 
         int result = front.data;
@@ -67,16 +67,16 @@ public class Queue {
     }
 
     public int first() {
-        if(isEmpty())
+        if (isEmpty()){
             throw new NoSuchElementException();
-
+        }
         return front.data;
     }
 
     public int last() {
-        if(isEmpty())
+        if (isEmpty()){
             throw new NoSuchElementException();
-
+        }
         return rear.data;
     }
 }
