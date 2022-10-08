@@ -2,6 +2,8 @@ package sort;
 
 import java.util.Arrays;
 
+/*BubbleSort algorithm checks two adjacent elements and swaps them if needed. This approach is followed in every pass.*/
+
 public class BubbleSort {
     public static void sort(int[] arr){
         int n = arr.length;
