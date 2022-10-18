@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Arrays;
+
 public class ArrayUtil {
     public void printArray(int[] arr){
         for (int i=0; i<arr.length; i++){
@@ -87,6 +89,37 @@ public class ArrayUtil {
         System.out.println("Missing Number = " + sum);
     }
 
+    public void mergeTwoSortedArrays(int[] arr1, int[] arr2){
+        int length1 = arr1.length, length2 = arr2.length;
+        int i=0, j=0, k=0;
+        int[] result = new int[length1 + length2];
+
+        while (i<length1 && j<length2){
+            if (arr1[i] < arr2[j]){
+                result[k] = arr1[i];
+                i++;
+            }else {
+                result[k] = arr2[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i<length1){
+            result[k] = arr1[i];
+            k++;
+            i++;
+        }
+
+        while (j<length2){
+            result[k] = arr2[j];
+            k++;
+            j++;
+        }
+
+        printArray(result);
+    }
+
     public static void main(String[] args) {
         int[] arr = {0,2,0,3,4,0,5,7,9,0};
         ArrayUtil arrayUtil = new ArrayUtil();
@@ -96,5 +129,6 @@ public class ArrayUtil {
         arrayUtil.findSecondMax(arr);
         arrayUtil.moveZeros(arr);
         arrayUtil.findMissingNumber(new int[] {1,2,3,5});
+        arrayUtil.mergeTwoSortedArrays(new int[] {2,5,6,8}, new int[] {1,3,4,7,10});
     }
 }
