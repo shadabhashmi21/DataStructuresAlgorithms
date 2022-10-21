@@ -120,6 +120,23 @@ public class ArrayUtil {
         printArray(result);
     }
 
+    public void sortedSquares(int[] arr){
+        int n = arr.length;
+        int i = 0, j = n-1;
+        int[] result = new int[n];
+
+        for (int k = n-1; k >= 0; k--) {
+           if (Math.abs(arr[i]) > Math.abs(arr[j])){
+               result[k] = arr[i] * arr[i];
+               i++;
+           }else {
+               result[k] = arr[j] * arr[j];
+               j--;
+           }
+        }
+        System.out.println("Sorted Squares " + Arrays.toString(result));
+    }
+
     public static void main(String[] args) {
         int[] arr = {0,2,0,3,4,0,5,7,9,0};
         ArrayUtil arrayUtil = new ArrayUtil();
@@ -130,5 +147,6 @@ public class ArrayUtil {
         arrayUtil.moveZeros(arr);
         arrayUtil.findMissingNumber(new int[] {1,2,3,5});
         arrayUtil.mergeTwoSortedArrays(new int[] {2,5,6,8}, new int[] {1,3,4,7,10});
+        arrayUtil.sortedSquares(new int[] {-5,-3,1,2,4,8});
     }
 }
