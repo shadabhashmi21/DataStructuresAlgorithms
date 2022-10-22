@@ -137,6 +137,27 @@ public class ArrayUtil {
         System.out.println("Sorted Squares " + Arrays.toString(result));
     }
 
+    public void arrangeMaxMin(int[] arr){
+        int maxIdx = arr.length - 1, minIdx = 0;
+        int max = arr[maxIdx] + 1;
+
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] % 2 ==0){
+                arr[i] = arr[i] + (arr[maxIdx] % max) * max;
+                maxIdx--;
+            }else {
+                arr[i] = arr[i] + (arr[minIdx] % max) * max;
+                minIdx++;
+            }
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] / max;
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+
     public static void main(String[] args) {
         int[] arr = {0,2,0,3,4,0,5,7,9,0};
         ArrayUtil arrayUtil = new ArrayUtil();
@@ -148,5 +169,6 @@ public class ArrayUtil {
         arrayUtil.findMissingNumber(new int[] {1,2,3,5});
         arrayUtil.mergeTwoSortedArrays(new int[] {2,5,6,8}, new int[] {1,3,4,7,10});
         arrayUtil.sortedSquares(new int[] {-5,-3,1,2,4,8});
+        arrayUtil.arrangeMaxMin(new int[] {2,3,5,6,8,9});
     }
 }
