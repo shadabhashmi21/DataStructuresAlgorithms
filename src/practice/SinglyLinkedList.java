@@ -139,5 +139,170 @@ public class SinglyLinkedList {
         head = previous;
     }
 
+    public void getMiddleNode(){
+        if (head == null) return;
 
+        ListNode slowPtr = head, fastPtr = head;
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        System.out.println("Middle node = " + slowPtr);
+    }
+
+    public void findNthFromLast(int index){
+        if (head == null) return;
+
+        int count = 0;
+        ListNode mainPtr = head, refPtr = head;
+        while (count < index){
+            refPtr = refPtr.next;
+            count++;
+        }
+
+        while (refPtr != null){
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+
+        System.out.println(mainPtr.data);
+    }
+
+    public void removeDuplicateFromSortedLinkedList(){
+        if (head == null) return;
+
+        ListNode current = head;
+        while (current.next != null){
+            if (current.data == current.next.data)
+                current.next = current.next.next;
+            else
+                current = current.next;
+        }
+    }
+
+    public void insertNodeInSortedLinkedList(int data){
+        ListNode newNode = new ListNode(data);
+
+        if (head == null){
+            head = newNode;
+            return;
+        }
+
+        if (head.data >= newNode.data){
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        ListNode current = head, temp = null;
+        while (current != null && current.data < newNode.data){
+            temp = current;
+            current = current.next;
+        }
+        temp.next = newNode;
+        newNode.next = current;
+    }
+
+    public void removeGivenKey(int key) {
+        ListNode current = head, temp = null;
+
+        if (current != null && current.data == key) {
+            head = current.next;
+            return;
+        }
+
+        while (current != null && current.data != key) {
+            temp = current;
+            current = current.next;
+        }
+
+        if (current == null){
+            System.out.println("Key not found");
+            return;
+        }
+
+        temp.next = current.next;
+    }
+
+    public void createLoopInLinkedList(){
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = second;
+    }
+
+    public void containsLoop(){
+        ListNode slowPtr = head, fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (slowPtr == fastPtr){
+                System.out.println("Loop detected");
+                return;
+            }
+        }
+        System.out.println("Loop not detected");
+    }
+
+    public void startOfLoop(){
+        ListNode slowPtr = head, fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null){
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+            if (slowPtr == fastPtr){
+
+                break;
+            }
+        }
+    }
+
+    public void getStartingNode(ListNode node){
+        ListNode temp = head;
+        while (temp != node){
+            temp = temp.next;
+            node = node.next;
+        }
+        System.out.println("Starting node = " + node.data);
+    }
+
+    public void removeLoop(ListNode node){
+        ListNode temp = head;
+        while (temp.next != node.next){
+            temp = temp.next;
+            node = node.next;
+        }
+        node.next = null;
+    }
+
+    public void mergeTwoSortedList(ListNode l1, ListNode l2){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+
+        while (l1 != null && l2 != null){
+            if (l1.data <= l2.data){
+                tail.next = l1;
+                l1 = l1.next;
+            }else {
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
+        }
+
+        if (l1 == null){
+            tail.next = l2;
+        }else {
+            tail.next = l1;
+        }
+
+        head = dummy.next;
+    }
 }
