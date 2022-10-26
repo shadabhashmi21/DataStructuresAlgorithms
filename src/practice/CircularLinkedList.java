@@ -6,90 +6,91 @@ public class CircularLinkedList {
     private ListNode last;
     private int length;
 
-    private static class ListNode{
-        private final int data;
-        private ListNode next;
+   private static class ListNode{
+       private final int data;
+       private ListNode next;
 
-        private ListNode(int data) {
-            this.data = data;
-        }
-    }
-    
-    public CircularLinkedList(){
-        last = null;
-        length = 0;
-    }
-    
-    public boolean isEmpty() {
-        return length == 0;
-    }
-    
-    public int getLength() {
-        return length;
-    }
-    
-    public void display(){
-        if (isEmpty()) return;
-        
-        ListNode first = last.next;
-        while (first != last) {
-            System.out.print(first.data + " ");
-            first = first.next;
-        }
-        System.out.print(first.data);
-    }
+       private ListNode(int data) {
+           this.data = data;
+       }
+   }
 
-    public void createCircularLinkedList(){
-        ListNode first = new ListNode(1);
-        ListNode second = new ListNode(2);
-        ListNode third = new ListNode(3);
-        ListNode fourth = new ListNode(4);
+   public CircularLinkedList(){
+       last = null;
+       length = 0;
+   }
 
-        first.next = second;
-        second.next = third;
-        third.next = fourth;
-        fourth.next = first;
+   public boolean isEmpty() {
+       return length == 0;
+   }
 
-        last = fourth;
-    }
+   public int getLength() {
+       return length;
+   }
 
-    public void insertFirst(int data){
-        ListNode newNode = new ListNode(data);
+   public void display(){
+       if (isEmpty()) return;
 
-        if (isEmpty())
-            last = newNode;
-        else
-            newNode.next = last.next;
+       ListNode first = last.next;
+       while (first != last) {
+           System.out.println(first.data + " ");
+           first = first.next;
+       }
+       System.out.println(first.data);
+   }
 
-        last.next = newNode;
-        length++;
-    }
+   public void createCircularLinkedList(){
+       ListNode first = new ListNode(1);
+       ListNode second = new ListNode(2);
+       ListNode third = new ListNode(3);
+       ListNode fourth = new ListNode(4);
 
-    public void insertLast(int data){
-        ListNode newNode = new ListNode(data);
+       first.next = second;
+       second.next = third;
+       third.next = fourth;
+       fourth.next = first;
 
-        if (isEmpty()){
-            last = newNode;
-            last.next = last;
-        }else {
-            newNode.next = last.next;
-            last.next = newNode;
-            last = newNode;
-        }
-        length++;
-    }
+       last = fourth;
+   }
 
-    public void deleteFirst(){
-        if (isEmpty())
-            throw new NoSuchElementException();
+   public void insertFirst(int data){
+       ListNode newNode = new ListNode(data);
 
-        ListNode temp = last.next;
-        if (last.next == last)
-            last = null;
-        else
-            last.next = temp.next;
+       if (isEmpty()){
+           last = newNode;
+           last.next = last;
+       }else {
+           newNode.next = last.next;
+           last.next = newNode;
+           last = newNode;
+       }
+       length++;
+   }
 
-        temp.next = null;
-        length--;
-    }
+   public void insertLast(int data){
+       ListNode newNode = new ListNode(data);
+
+       if (isEmpty()){
+           last = newNode;
+           last.next = last;
+       }else {
+           newNode.next = last.next;
+           last.next = newNode;
+           last = newNode;
+       }
+       length++;
+   }
+
+   public void deleteFirst(){
+       if (isEmpty())
+           throw new NoSuchElementException();
+
+       ListNode temp = last.next;
+       if (temp.next == null)
+           last.next = null;
+       else
+           last.next = temp.next;
+       temp.next = null;
+       length--;
+   }
 }
