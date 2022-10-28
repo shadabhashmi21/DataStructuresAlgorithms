@@ -7,12 +7,6 @@ public class Queue {
     private ListNode rear;
     private int length;
 
-    public Queue(){
-        front = null;
-        rear = null;
-        length = 0;
-    }
-
     private static class ListNode{
         private final int data;
         private ListNode next;
@@ -22,11 +16,17 @@ public class Queue {
         }
     }
 
-    public int getLength() {
+    public Queue(){
+        front = null;
+        rear = null;
+        length = 0;
+    }
+
+    public int getLength(){
         return length;
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty(){
         return length == 0;
     }
 
@@ -35,15 +35,16 @@ public class Queue {
             return;
 
         ListNode current = front;
-        while (current != null){
-            System.out.print(current.data + " ");
+        while (current != null) {
+            System.out.println(current.data + " -> ");
             current = current.next;
         }
-        System.out.print("null");
+        System.out.println("null");
     }
 
-    public void enqueue(int data){
+    public void enqueue(int data) {
         ListNode newNode = new ListNode(data);
+
         if (isEmpty())
             front = newNode;
         else
@@ -53,30 +54,29 @@ public class Queue {
         length++;
     }
 
-    public int dequeue(){
+    public int dequeue() {
         if (isEmpty())
             throw new NoSuchElementException();
 
         int result = front.data;
         front = front.next;
-        if (front == null)
+        if (front == rear)
             rear = null;
-
         length--;
         return result;
     }
 
     public int first() {
-        if (isEmpty()){
+        if (isEmpty())
             throw new NoSuchElementException();
-        }
+
         return front.data;
     }
 
     public int last() {
-        if (isEmpty()){
+        if (isEmpty())
             throw new NoSuchElementException();
-        }
+
         return rear.data;
     }
 }
