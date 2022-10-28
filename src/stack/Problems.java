@@ -65,7 +65,7 @@ public class Problems {
 
     public static void main(String[] args) {
         reverseString("Mango");
-        nextGreaterElement(new int[]{4,7,3,4,8,1});
+        nextGreaterElement(new int[]{8,2,5,3,1,4});
         isValidParenthesis("{()}");
     }
 }
