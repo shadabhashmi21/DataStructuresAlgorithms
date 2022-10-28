@@ -29,9 +29,10 @@ public class Stack {
     }
 
     public void push(int data){
-        ListNode temp = new ListNode(data);
-        temp.next = top;
-        top = temp;
+        ListNode newNode = new ListNode(data);
+
+        newNode.next = top;
+        top = newNode;
         length++;
     }
 
