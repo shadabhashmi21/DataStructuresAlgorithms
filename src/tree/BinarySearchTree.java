@@ -23,6 +23,7 @@ public class BinarySearchTree {
         if (root == null) {
             root = new TreeNode(value);
             return root;
+
         }
 
         if (value < root.data) {

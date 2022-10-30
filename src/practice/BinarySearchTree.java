@@ -2,19 +2,18 @@ package practice;
 
 public class BinarySearchTree {
     private TreeNode root;
-
     private static class TreeNode{
-        private final int data;
         private TreeNode left;
         private TreeNode right;
+        private final int data;
 
         private TreeNode(int data) {
             this.data = data;
         }
     }
 
-    public void insert(int data) {
-        root = insert(root, data);
+    public void insert(int value){
+        root = insert(root, value);
     }
 
     public TreeNode insert(TreeNode root, int value) {
@@ -24,33 +23,33 @@ public class BinarySearchTree {
         }
 
         if (value < root.data)
-            root.left = insert(root.left, value);
+            root = insert(root.left, value);
         else
-            root.right = insert(root.right, value);
+            root = insert(root.right, value);
 
         return root;
     }
 
     public void inOrder(TreeNode root){
-        if (root == null)
-            return;
+        if (root == null) return;
 
         inOrder(root.left);
-        System.out.print(root.data + " ");
+        System.out.println(root.data + " ");
         inOrder(root.right);
     }
 
-    public TreeNode search(int key){
-        return search(root, key);
+    public void search(int key){
+        root = search(root, key);
     }
 
     public TreeNode search(TreeNode root, int key){
-        if (root == null  || root.data == key)
-            return root;
+        if (root == null || root.data == key) return root;
 
         if (key < root.data)
-            return search(root.left, key);
+            root = search(root.left, key);
         else
-            return search(root.right, key);
+            root = search(root.right, key);
+
+        return root;
     }
 }
