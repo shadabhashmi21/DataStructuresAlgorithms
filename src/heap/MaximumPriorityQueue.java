@@ -6,6 +6,8 @@ package heap;
 /*The binary heap is a data structure that helps us in implementing PriorityQueue operations efficiently. A binary heap is a
 * complete Binary Tree in which each node value is <= or >= than the value of its children (max heap or min heap)*/
 
+/*A MaxHeap is a complete binary tree in which each node's value is greater than the value of its children.*/
+
 public class MaximumPriorityQueue {
     Integer[] heap;
     int n;
