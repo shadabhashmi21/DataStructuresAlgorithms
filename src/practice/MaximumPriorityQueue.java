@@ -23,7 +23,7 @@ public class MaximumPriorityQueue {
 
         n++;
         heap[n] = x;
-        swim();
+        swim(n);
     }
 
     public void swim(int k){
