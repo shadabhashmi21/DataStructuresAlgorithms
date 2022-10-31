@@ -1,5 +1,11 @@
 package heap;
 
+/*PriorityQueue is a data structure that allows us to find maximum/minimum element among a collection of element in a constant time.
+* The following operations are supported - insert, deleteMax/deleteMin, getMax/getMin */
+
+/*The binary heap is a data structure that helps us in implementing PriorityQueue operations efficiently. A binary heap is a
+* complete Binary Tree in which each node value is <= or >= than the value of its children (max heap or min heap)*/
+
 public class MaximumPriorityQueue {
     Integer[] heap;
     int n;
