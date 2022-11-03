@@ -2,20 +2,21 @@ package sort;
 
 import java.util.Arrays;
 
-/*BubbleSort algorithm checks two adjacent elements and swaps them if needed. This approach is followed in every pass.*/
+/*BubbleSort algorithm checks two adjacent elements and swaps them if needed. This approach is followed in every pass.
+ * The greatest element is sunk at the end of array with every pass, hence we don't need to iterate the inner loop till last in every pass*/
 
 public class BubbleSort {
-    public static void sort(int[] arr){
+    public static void sort(int[] arr) {
         int n = arr.length;
         boolean isSwapped;
 
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             isSwapped = false;
-            for (int j = 0; j < n-1-i; j++) {
-                if (arr[j] > arr[j+1]){
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                     isSwapped = true;
                 }
             }
@@ -25,6 +26,6 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        sort(new int[]{5,4,8,1,9});
+        sort(new int[]{5, 4, 8, 1, 9});
     }
 }
