@@ -2,6 +2,10 @@ package sort;
 
 import java.util.Arrays;
 
+/*The algorithm sorts an array by repeatedly finding the minimum element in an unsorted array and making it a part of sorted array.
+ From unsorted part, we pick minimum element and swap it with the leftmost element of unsorted part.
+ After swap, that element now becomes the part of the sorted array.*/
+
 public class SelectionSort {
     public static void sort(int[] arr){
         int n = arr.length;
