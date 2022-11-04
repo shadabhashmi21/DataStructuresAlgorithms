@@ -14,11 +14,10 @@ public class SelectionSort {
             for(int j = i+1; j < n; j++) {
                 if(arr[j] < arr[min])
                     min = j;
-
-                int temp = arr[min];
-                arr[min] = arr[j];
-                arr[j] = temp;
             }
+            int temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
         }
         System.out.println(Arrays.toString(arr));
     }
