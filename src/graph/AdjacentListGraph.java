@@ -2,6 +2,7 @@ package graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class AdjacentListGraph {
     private LinkedList<Integer>[ ] adj;
@@ -45,11 +46,30 @@ public class AdjacentListGraph {
 
         while (!queue.isEmpty()) {
             int u = queue.poll();
-            System.out.println(u + " ");
+            System.out.print(u + " ");
             for (int v : adj[u]) {
                 if (!visited[v]) {
                     visited[v] = true;
                     queue.offer(v);
+                }
+            }
+        }
+    }
+
+    public void dfs(int s){
+        boolean[] visited = new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(s);
+
+        while (!stack.isEmpty()) {
+            int u = stack.pop();
+            if (!visited[u]) {
+                visited[u] = true;
+                System.out.print(u + " ");
+                for (int v: adj[u]){
+                    if (!visited[v])
+                        stack.push(v);
                 }
             }
         }
@@ -60,6 +80,10 @@ public class AdjacentListGraph {
         g.addEdge(1, 2);
         g.addEdge(2, 3);
         g.addEdge(3, 0);
-        System.out.println(g);
+        g.addEdge(4, 2);
+        //System.out.println(g);
+
+        //g.bfs(0);
+        g.dfs(0);
     }
 }
