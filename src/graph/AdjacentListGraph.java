@@ -54,6 +54,7 @@ public class AdjacentListGraph {
                 }
             }
         }
+        System.out.println();
     }
 
     public void dfs(int s){
@@ -73,7 +74,26 @@ public class AdjacentListGraph {
                 }
             }
         }
+        System.out.println();
     }
+
+    public void recursiveDFS(){
+        boolean[] visited = new boolean[V];
+        for (int v = 0; v < V; v++){
+            if (!visited[v])
+                recursiveDFS(v, visited);
+        }
+    }
+
+    public void recursiveDFS(int v, boolean[] visited){
+        visited[v] = true;
+        System.out.print(v + " ");
+        for (int w: adj[v]){
+            if (!visited[w])
+                recursiveDFS(w, visited);
+        }
+    }
+
     public static void main(String[] args) {
         AdjacentListGraph g = new AdjacentListGraph(5);
         g.addEdge(0, 1);
@@ -83,7 +103,8 @@ public class AdjacentListGraph {
         g.addEdge(4, 2);
         //System.out.println(g);
 
-        //g.bfs(0);
+        g.bfs(0);
         g.dfs(0);
+        g.recursiveDFS();
     }
 }
